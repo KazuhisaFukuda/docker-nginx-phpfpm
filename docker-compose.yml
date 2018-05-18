@@ -1,0 +1,45 @@
+version: '2'
+services:
+
+### Nginx ###
+    webserver:
+      image: nginx:1.14.0-alpine
+      container_name: nginx1.14
+      privileged: true
+      links:
+        - php7-fpm
+      ports:
+        - "80:80"
+        - "443:443"
+      volumes:
+        - ./web/default.conf:/etc/nginx/conf.d/default.conf
+
+### PHP ###
+    php7-fpm:
+      build: ./php
+      container_name: php7.1-fpm
+      privileged: true
+      links:
+        - dbserver
+      volumes:
+        - ./src:/var/www/html:cached 
+
+### MySQL###
+    dbserver:
+      build: ./db
+      container_name: mysql8
+      ports: 
+        - "3036:3036"
+      environment:
+        - MYSQL_ROOT_PASSWORD=password
+        - MYSQL_DATABASE=test
+        - MYSQL_USER=test
+        - MYSQL_PASSWORD=test
+      volumes_from:
+        - data
+      privileged: true
+
+### •Û‘¶—Ìˆæ ###
+    data:
+      image: busybox
+      container_name: data_mysql8
