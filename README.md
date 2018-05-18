@@ -16,5 +16,4 @@ Dockerを使用したPHPの開発環境(Nginx + PHP-FPM)を構築
 1. git clone https://github.com/Kazuo123/docker-nginx-phpfpm.git
 2. cd docker-nginx-phpfpm
 3. docker-compose up -d
-4. http://localhost/index.php
 ```
