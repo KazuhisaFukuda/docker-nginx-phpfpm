@@ -39,7 +39,7 @@ services:
         - data
       privileged: true
 
-### •Û‘¶—Ìˆæ ###
+### ä¿å­˜é ˜åŸŸ ###
     data:
       image: busybox
-      container_name: data_mysql8
+      container_name: db_data
